@@ -11,7 +11,7 @@ public class H11 {
         
     public ArrayList<Integer> loadWeight() throws FileNotFoundException {        
         ArrayList<Integer> weight = new ArrayList<>();
-        try (Scanner s = new Scanner(new FileReader("H11_a.txt"))) {
+        try (Scanner s = new Scanner(new FileReader("H1_a.txt"))) {
             while (s.hasNext()) {
                 weight.add(s.nextInt());
             }
@@ -31,24 +31,27 @@ public class H11 {
 
     public int plnenieBatohu() throws FileNotFoundException {
         int K = 15000;
-        int r = 4;
+        int r = 300;
         int pocetVeciVBahotu = 0;
         int cenaPredmetovVBatohu = 0;
         int vahaBahotu = 0;
 
+        ArrayList<Integer> weight = loadWeight();
+        ArrayList<Integer> price = loadPrice();
+        
         while ((pocetVeciVBahotu != r) && (vahaBahotu != K)) {
             int temp = 0;
-            for (int i = 0; i < loadWeight().size(); i++) {
-                int current = loadWeight().get(i);
+            for (int i = 0; i < weight.size(); i++) {
+                int current = weight.get(i);
                 if (current > temp) {
                     temp = current;
                 }
             }
-            int index = loadWeight().lastIndexOf(temp);
-            cenaPredmetovVBatohu += loadPrice().get(index);
-            vahaBahotu += loadWeight().get(index);
-            loadWeight().remove(index);
-            loadPrice().remove(index);
+            int index = weight.lastIndexOf(temp);
+            cenaPredmetovVBatohu += price.get(index);
+            vahaBahotu += weight.get(index);
+            weight.remove(index);
+            price.remove(index);
             pocetVeciVBahotu++;
         }
         System.out.println(cenaPredmetovVBatohu);

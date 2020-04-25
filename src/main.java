@@ -12,9 +12,9 @@ public class main {
         H11 h11 = new H11();
         ArrayList<Integer> weight = h11.loadWeight();
         ArrayList<Integer> price = h11.loadPrice();
-        //h11.plnenieBatohu();       
+        h11.plnenieBatohu();       
 
-        System.out.println(h11.loadWeight());
+       // System.out.println(h11.loadWeight());
       
     }
 
