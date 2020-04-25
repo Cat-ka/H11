@@ -38,7 +38,7 @@ public class H11 {
         ArrayList<Integer> weight = loadWeight();
         ArrayList<Integer> price = loadPrice();
         
-        while ((numberOfThingsInBP != r) && (weightOfBP != K)) {
+        while ((numberOfThingsInBP < r) || (weightOfBP < K)) {
             int temp = 0;
             for (int i = 0; i < weight.size(); i++) {
                 int current = weight.get(i);
