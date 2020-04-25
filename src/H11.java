@@ -54,8 +54,10 @@ public class H11 {
             price.remove(index);
             pocetVeciVBahotu++;
         }
-        System.out.println(cenaPredmetovVBatohu);
+        System.out.println("Pocet veci v batohu: " + pocetVeciVBahotu);
+        System.out.println("Hmotnosť batohu je: " + vahaBahotu);
+        System.out.println("Hodnota účelovej funkcie je: " + cenaPredmetovVBatohu);
+                
         return cenaPredmetovVBatohu;
     }
-
 }
