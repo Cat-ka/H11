@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -7,8 +6,8 @@ import java.io.*;
  *
  * @author kisel
  */
-public class H11 {
-        
+
+public class H11 {        
     public ArrayList<Integer> loadWeight() throws FileNotFoundException {        
         ArrayList<Integer> weight = new ArrayList<>();
         try (Scanner s = new Scanner(new FileReader("H1_a.txt"))) {
@@ -29,17 +28,17 @@ public class H11 {
         }
     }
 
-    public int plnenieBatohu() throws FileNotFoundException {
+    public int backpackFilling() throws FileNotFoundException {
         int K = 15000;
         int r = 300;
-        int pocetVeciVBahotu = 0;
-        int cenaPredmetovVBatohu = 0;
-        int vahaBahotu = 0;
+        int numberOfThingsInBP = 0;
+        int priceOfThingsInBP = 0;
+        int weightOfBP = 0;
 
         ArrayList<Integer> weight = loadWeight();
         ArrayList<Integer> price = loadPrice();
         
-        while ((pocetVeciVBahotu != r) && (vahaBahotu != K)) {
+        while ((numberOfThingsInBP != r) && (weightOfBP != K)) {
             int temp = 0;
             for (int i = 0; i < weight.size(); i++) {
                 int current = weight.get(i);
@@ -48,16 +47,16 @@ public class H11 {
                 }
             }
             int index = weight.lastIndexOf(temp);
-            cenaPredmetovVBatohu += price.get(index);
-            vahaBahotu += weight.get(index);
+            priceOfThingsInBP += price.get(index);
+            weightOfBP += weight.get(index);
             weight.remove(index);
             price.remove(index);
-            pocetVeciVBahotu++;
-        }
-        System.out.println("Pocet veci v batohu: " + pocetVeciVBahotu);
-        System.out.println("Hmotnosť batohu je: " + vahaBahotu);
-        System.out.println("Hodnota účelovej funkcie je: " + cenaPredmetovVBatohu);
+            numberOfThingsInBP++;
+        }        
+        System.out.println("Pocet veci v batohu: " + numberOfThingsInBP);
+        System.out.println("Hmotnosť batohu je: " + weightOfBP);
+        System.out.println("Hodnota účelovej funkcie je: " + priceOfThingsInBP);
                 
-        return cenaPredmetovVBatohu;
+        return priceOfThingsInBP;
     }
 }
