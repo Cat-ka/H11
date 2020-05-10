@@ -19,14 +19,14 @@ public final class H11 {
     ArrayList<Integer> price;
     ArrayList<Integer> tempWeight;
     ArrayList<Integer> result;
-    ArrayList<Integer> matica;
+    ArrayList<Integer> vector;
 
     public H11() throws FileNotFoundException {
         this.weight = loadWeight();
         this.price = loadPrice();
         this.tempWeight = loadWeight();
         this.result = new ArrayList<Integer>();
-        this.matica = new ArrayList<Integer>();
+        this.vector = new ArrayList<Integer>();
     }
 
     public ArrayList<Integer> loadWeight() throws FileNotFoundException {
@@ -49,21 +49,33 @@ public final class H11 {
         }
     }
 
-    public int backpackFilling() throws FileNotFoundException {
+    public int backpackFilling() {
         while ((numberOfThingsInBP < r) || (weightOfBP < K)) {
-            int temp = 0;
+            int tempWeight = 0;
+            int tempIndex = -1;
             for (int i = 0; i < weight.size(); i++) {
-                int current = weight.get(i);
-                if (current > temp) {
-                    temp = current;
+                int currentWeight = weight.get(i);
+                if (currentWeight > tempWeight) {
+                    tempWeight = currentWeight;
                 }
             }
-            int index = weight.lastIndexOf(temp);
-            result.add(temp);
-            priceOfThingsInBP += price.get(index);
-            weightOfBP += weight.get(index);
-            weight.remove(index);
-            price.remove(index);
+            int lowestPrice = Integer.MAX_VALUE;
+            for (int i = 0; i < weight.size(); i++) {
+                int current = weight.get(i);
+                if (current == tempWeight) {
+                    int currentPrice = price.get(i);
+                    if (currentPrice < lowestPrice) {
+                        lowestPrice = currentPrice;
+                        tempIndex = i;
+                    }
+                }
+            }
+
+            result.add(tempWeight);
+            priceOfThingsInBP += lowestPrice;
+            weightOfBP += weight.get(tempIndex);
+            weight.remove(tempIndex);
+            price.remove(tempIndex);
             numberOfThingsInBP++;
         }
         System.out.println("Pocet veci v batohu: " + numberOfThingsInBP);
@@ -87,30 +99,30 @@ public final class H11 {
             }
             myWriter.write("\n***************************************************************\n");
             myWriter.write("Prípustné riešenie úlohy o batohu je: " + "\n" + "x = (");
-            for (int j = 0; j < matica.size(); j++) {
-                myWriter.write(matica.get(j) + ", ");
+            for (int j = 0; j < vector.size(); j++) {
+                myWriter.write(vector.get(j) + ", ");
             }
             myWriter.write(")");
         }
     }
 
-    public ArrayList<Integer> jednotkováMatica() throws FileNotFoundException {
+    public ArrayList<Integer> vector() {
         for (int i = 0; i < tempWeight.size(); i++) {
-            matica.add(0);
+            vector.add(0);
         }
 
         for (int i = 0; i < result.size(); i++) {
             for (int j = 0; j < tempWeight.size(); j++) {
                 if (tempWeight.get(j) == result.get(i)) {
-                    matica.set(j, 1);
+                    vector.set(j, 1);
                 }
             }
         }
-        
-        for (int i = 0; i < matica.size(); i++) {
-             System.out.print(matica.get(i) + ", ");
+
+        for (int i = 0; i < vector.size(); i++) {
+            System.out.print(vector.get(i) + ", ");
         }
-       
-        return matica;
+
+        return vector;
     }
 }
