@@ -12,7 +12,7 @@ public class main {
         H11 h11 = new H11();
         h11.loadWeight();
         h11.loadPrice();        
-        h11.backpackFilling(); 
+        h11.putInTheBP(); 
         h11.vector();
         h11.writeResult();      
     }

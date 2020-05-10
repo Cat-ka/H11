@@ -49,7 +49,7 @@ public final class H11 {
         }
     }
 
-    public int backpackFilling() {
+    public int putInTheBP() {
         while ((numberOfThingsInBP < r) || (weightOfBP < K)) {
             int tempWeight = 0;
             int tempIndex = -1;
