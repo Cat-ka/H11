@@ -95,7 +95,7 @@ public final class H11 {
     }
 
     public ArrayList<Integer> jednotkováMatica() throws FileNotFoundException {
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < tempWeight.size(); i++) {
             matica.add(0);
         }
 
@@ -106,6 +106,7 @@ public final class H11 {
                 }
             }
         }
+        
         for (int i = 0; i < matica.size(); i++) {
              System.out.print(matica.get(i) + ", ");
         }
