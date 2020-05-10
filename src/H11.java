@@ -85,7 +85,7 @@ public final class H11 {
             for (int i = 0; i < result.size(); i++) {
                 myWriter.write(result.get(i) + ", ");
             }
-            myWriter.write("***************************************************************\n");
+            myWriter.write("\n***************************************************************\n");
             myWriter.write("Prípustné riešenie úlohy o batohu je: " + "\n" + "x = (");
             for (int j = 0; j < matica.size(); j++) {
                 myWriter.write(matica.get(j) + ", ");
