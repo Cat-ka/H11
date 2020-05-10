@@ -89,16 +89,16 @@ public final class H11 {
         try (FileWriter myWriter = new FileWriter("result.txt")) {
             myWriter.write("Úloha po vykonaní duálnej vsúvacej heuristiky.\n");
             myWriter.write("***************************************************************\n");
-            myWriter.write("Pocet veci v batohu: " + "\t\t" + numberOfThingsInBP + "\n");
+            myWriter.write("Počet vecí v batohu: " + "\t\t" + numberOfThingsInBP + "\n");
             myWriter.write("Hmotnosť batohu je: " + "\t\t" + weightOfBP + "\n");
             myWriter.write("Hodnota účelovej funkcie je: " + "\t" + priceOfThingsInBP + "\n");
             myWriter.write("***************************************************************\n");
-            myWriter.write("Jednotlivé hmotnosti predmetov v batohu sú: " + "\n");
+            myWriter.write("Jednotlivé hmotnosti predmetov v batohu sú: " + "\n\n");
             for (int i = 0; i < result.size(); i++) {
                 myWriter.write(result.get(i) + ", ");
             }
             myWriter.write("\n***************************************************************\n");
-            myWriter.write("Prípustné riešenie úlohy o batohu je: " + "\n" + "x = (");
+            myWriter.write("Prípustné riešenie úlohy o batohu je: " + "\n\n" + "x = (");
             for (int j = 0; j < vector.size(); j++) {
                 myWriter.write(vector.get(j) + ", ");
             }
@@ -118,7 +118,8 @@ public final class H11 {
                 }
             }
         }
-
+        
+        System.out.println("Prípustné riešenie úlohy o batohu je: ");
         for (int i = 0; i < vector.size(); i++) {
             System.out.print(vector.get(i) + ", ");
         }
