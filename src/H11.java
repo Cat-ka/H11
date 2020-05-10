@@ -5,7 +5,7 @@ import java.io.*;
 
 /**
  *
- * @author kisel
+ * @author Katka Kiselová
  */
 public final class H11 {
 
@@ -17,12 +17,16 @@ public final class H11 {
 
     ArrayList<Integer> weight;
     ArrayList<Integer> price;
+    ArrayList<Integer> tempWeight;
     ArrayList<Integer> result;
+    ArrayList<Integer> matica;
 
     public H11() throws FileNotFoundException {
-        this.result = new ArrayList<Integer>();
         this.weight = loadWeight();
         this.price = loadPrice();
+        this.tempWeight = loadWeight();
+        this.result = new ArrayList<Integer>();
+        this.matica = new ArrayList<Integer>();
     }
 
     public ArrayList<Integer> loadWeight() throws FileNotFoundException {
@@ -77,11 +81,35 @@ public final class H11 {
             myWriter.write("Hmotnosť batohu je: " + "\t\t" + weightOfBP + "\n");
             myWriter.write("Hodnota účelovej funkcie je: " + "\t" + priceOfThingsInBP + "\n");
             myWriter.write("***************************************************************\n");
-            myWriter.write("Jednotlivé hmotnosti predmetov v batohu" + "\n");
+            myWriter.write("Jednotlivé hmotnosti predmetov v batohu sú: " + "\n");
             for (int i = 0; i < result.size(); i++) {
-                myWriter.write(result.get(i) + "\n");
+                myWriter.write(result.get(i) + ", ");
             }
+            myWriter.write("***************************************************************\n");
+            myWriter.write("Prípustné riešenie úlohy o batohu je: " + "\n" + "x = (");
+            for (int j = 0; j < matica.size(); j++) {
+                myWriter.write(matica.get(j) + ", ");
+            }
+            myWriter.write(")");
+        }
+    }
+
+    public ArrayList<Integer> jednotkováMatica() throws FileNotFoundException {
+        for (int i = 0; i < 500; i++) {
+            matica.add(0);
         }
 
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < tempWeight.size(); j++) {
+                if (tempWeight.get(j) == result.get(i)) {
+                    matica.set(j, 1);
+                }
+            }
+        }
+        for (int i = 0; i < matica.size(); i++) {
+             System.out.print(matica.get(i) + ", ");
+        }
+       
+        return matica;
     }
 }
